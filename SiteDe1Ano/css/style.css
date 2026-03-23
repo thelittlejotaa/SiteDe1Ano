@@ -1,0 +1,199 @@
+:root {
+    --primary-color: #ff4081;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background: linear-gradient(-45deg, #ff9a9e, #fecfef, #f6e6f9, #ffc3a0);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    color: #4a1523;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+    position: relative;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.container {
+    position: relative;
+    z-index: 10;
+    background: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 30px;
+    padding: 50px 40px;
+    max-width: 800px;
+    text-align: center;
+    box-shadow: 0 10px 40px rgba(255, 64, 129, 0.15);
+    margin: 40px 20px;
+    transform: translateY(0);
+    transition: all 0.4s ease;
+}
+
+.container:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 50px rgba(255, 64, 129, 0.25);
+    background: rgba(255, 255, 255, 0.55);
+}
+
+h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 4.5rem;
+    color: #d81b60;
+    margin-bottom: 5px;
+    text-shadow: 2px 2px 5px rgba(216, 27, 96, 0.2);
+    line-height: 1.1;
+}
+
+.date-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
+    color: white;
+    font-size: 1.6rem;
+    font-weight: 600;
+    padding: 12px 35px;
+    border-radius: 50px;
+    margin: 25px 0 35px 0;
+    box-shadow: 0 6px 20px rgba(255, 117, 140, 0.5);
+    letter-spacing: 3px;
+    position: relative;
+    overflow: hidden;
+    animation: floatBadge 3s ease-in-out infinite;
+}
+
+.date-badge::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
+    transform: skewX(-25deg);
+    animation: shine 4s infinite;
+}
+
+@keyframes shine {
+    0% { left: -100%; }
+    20% { left: 200%; }
+    100% { left: 200%; }
+}
+
+@keyframes floatBadge {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+p {
+    font-size: 1.25rem;
+    line-height: 1.7;
+    margin-bottom: 25px;
+    color: #5c1a25;
+    font-weight: 300;
+}
+
+h2 {
+    font-size: 2rem;
+    font-weight: 400;
+    color: #ad1457;
+    line-height: 1.6;
+    margin-top: 35px;
+    font-family: 'Dancing Script', cursive;
+}
+
+h3 {
+    font-size: 1.35rem;
+    font-weight: 600;
+    margin-top: 25px;
+    color: #c2185b;
+    font-family: 'Outfit', sans-serif;
+}
+
+/* Balloons */
+.balloon-wrapper {
+    position: absolute;
+    bottom: -150px;
+    z-index: 1;
+    animation-name: floatUp;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+.heart-balloon {
+    width: var(--size, 50px);
+    height: var(--size, 50px);
+    background: var(--color, #ff4081);
+    position: relative;
+    transform: rotate(45deg);
+    animation: spinBalloon 6s ease-in-out infinite alternate;
+    box-shadow: 0 0 20px rgba(255, 100, 150, 0.4);
+    border-radius: 4px;
+}
+
+.heart-balloon::before,
+.heart-balloon::after {
+    content: '';
+    position: absolute;
+    width: var(--size, 50px);
+    height: var(--size, 50px);
+    background: var(--color, #ff4081);
+    border-radius: 50%;
+}
+
+.heart-balloon::before { 
+    top: calc(var(--size, 50px) / -2); 
+    left: 0; 
+}
+
+.heart-balloon::after { 
+    top: 0; 
+    left: calc(var(--size, 50px) / -2); 
+}
+
+.string {
+    position: absolute;
+    width: 1px;
+    height: 120px;
+    background: rgba(255, 255, 255, 0.6);
+    top: calc(var(--size, 50px) * 0.9);
+    left: calc(var(--size, 50px) / 2);
+    transform: rotate(-45deg);
+    transform-origin: top left;
+    z-index: -1;
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(0); opacity: 0; }
+    5% { opacity: 0.9; }
+    95% { opacity: 0.9; }
+    100% { transform: translateY(-120vh); opacity: 0; }
+}
+
+@keyframes spinBalloon {
+    0% { transform: rotate(35deg) translateX(-15px); }
+    50% { transform: rotate(55deg) translateX(15px); }
+    100% { transform: rotate(35deg) translateX(-15px); }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    h1 { font-size: 3.5rem; }
+    .container { padding: 40px 20px; }
+    p { font-size: 1.1rem; }
+    h2 { font-size: 1.6rem; }
+}
